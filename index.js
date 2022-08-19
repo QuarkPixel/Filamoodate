@@ -1,3 +1,6 @@
+// console.log(aaa);
+// import * as name from './NoSleep.min.js'
+// checker()
 var noSleep = new NoSleep()
 
 var wakeLockEnabled = false
