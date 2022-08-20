@@ -1,0 +1,8 @@
+node_modules
+dist
+.vscode
+deploy.sh
+.DS_Store
+package-lock.json
+package.json
+test.*
