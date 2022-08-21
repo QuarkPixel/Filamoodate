@@ -1,3 +1,60 @@
-#ScreenLamp {
-    /* background-color: #e500e5; */
+:root {
+    --textColor: #000;
+    --pixelScale: 3;
+}
+::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+}
+@font-face {
+    font-family: Chill;
+    src: url("res/Fonts/Chill.woff2") format("woff2"),
+        url("res/Fonts/Chill.woff2") format("woff"),
+        url("res/Fonts/Chill.ttf") format("opentype");
+}
+
+body {
+    color: var(--black);
+    background-color: #ccc;
+    font-family: Chill;
+    font-size: calc(13.82px * var(--pixelScale));
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    display: inline;
+}
+
+a {
+    text-decoration: none;
+    display: block;
+    color: var(--black8);
+}
+
+i {
+    font-style: normal;
+}
+
+button {
+    outline: none;
+    border: none;
+    background-color: unset;
+    color: var(--textColor);
+    font-size: 0;
+    image-rendering: pixelated; /* Adapt to bugs in chrome */
+    image-rendering: crisp-edges;
+    /* background-position:  */
+    background: no-repeat 0 0px url("res/UserInterface.png");
+    background-size: auto 192px;
+    height: 32px;
+    width: 32px;
+}
+
+button > img {
+    /* width: ; */
+    height: 192px;
 }
