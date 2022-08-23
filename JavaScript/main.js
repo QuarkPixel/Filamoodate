@@ -1,5 +1,9 @@
-var noSleep = new NoSleep()
-var btnAnimation = document.getElementsByClassName("btnAnimation")
+var noSleep = new NoSleep(),
+    btnAnimation = document.getElementsByClassName("btnAnimation"),
+    isControlledByEventListener,
+    ScreenLamp = document.getElementById("ScreenLamp"),
+    ScreenUI = document.getElementById("ScreenUI"),
+    isUiHidden = false
 for (let i = 0; i < btnAnimation.length; i++) {
     let btnAnimationAttr = btnAnimation[i].getAttribute("name").split(",")
     if (btnAnimationAttr.length <= 2) {
@@ -52,10 +56,12 @@ function SwitchFullScreen() {
             }
             i--
         }, 50)
-        document.getElementById("ScreenUI").style.right = 0
+        ScreenUI.style.right = 0
         document
             .getElementById("ScreenUI")
             .getElementsByClassName("background")[0].style.opacity = 0.2
+        window.onmousemove = null
+        ScreenLamp.onclick = null
     } else {
         //FullScreen
         isFullScreen = true
@@ -82,32 +88,39 @@ function SwitchFullScreen() {
             i++
         }, 50)
 
-        document.getElementById("ScreenUI").style.right =
-            "calc(-16px * var(--pixelScale))"
-        document
-            .getElementById("ScreenUI")
-            .getElementsByClassName("background")[0].style.opacity = 0
+        ScreenUI.style.right = "calc(-16px * var(--pixelScale))"
+        ScreenUI.getElementsByClassName("background")[0].style.opacity = 0
+        ScreenLamp.style.cursor = "pointer"
+        //add interval
+        window.onmousemove = function () {
+            if (this.time && Date.now() - this.time < 2048) return
+            this.time = Date.now()
+            SwitchUiVisibility("display")
+        }
+        ScreenLamp.onclick = function () {
+            if (isUiHidden) {
+                SwitchUiVisibility("display")
+            } else {
+                SwitchUiVisibility("hidden")
+            }
+        }
+        // window.addEventListener("touchend", EventListenerFindTouched(), false)
     }
-    // let CountdownDisplaySeconds =3
-    // function openMouseMove() {
-    //     CountdownDisplaySeconds = 3
-    // }
-    console.log("Lock: " + isFullScreen)
 }
 
-let CountdownDisplaySeconds = 3
-window.onmousemove = function () {
-    CountdownDisplaySeconds = 3
-}
-
-var CountdownDisplay = setInterval(function () {
-    // var CountdownDisplay = setInterval(function () {
-    if (CountdownDisplaySeconds <= 0) {
-        console.log("close")
-        // clearInterval(CountdownDisplay)
+function SwitchUiVisibility(inputCase) {
+    let State
+    if (inputCase == "display") {
+        console.log("a")
+        State = ["pointer", "0.5"]
+        isUiHidden = false
+    } else if (inputCase == "hidden") {
+        State = ["none", "0"]
+        isUiHidden = true
     }
-    CountdownDisplaySeconds--
-}, 1000)
+    ScreenLamp.style.cursor = State[0]
+    btnAnimation[0].style.opacity = State[1]
+}
 
 // var openSettingUI = false
 function SwitchSettingUI() {

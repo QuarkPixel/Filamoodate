@@ -24,10 +24,19 @@
 
 <body>
     <div id="ScreenLamp"></div>
-    <input type="button" id="toggle" value="Wake Lock is disabled" />
+    <div id="ScreenUI">
+        <div class="background"></div>
+        <div class="btn">
+            <button name="0,0" class="btnAnimation"
+                onclick="SwitchFullScreen()"></button>
+            <button name="16,0" class="btnAnimation" onclick="SwitchSettingUI()"></button>
+        </div>
+
+    </div>
+
 </body>
 <script src="./JavaScript/NoSleep.js"></script>
-<script src="./JavaScript/BSS.min.js"></script>
+<!-- <script src="./JavaScript/BSS.min.js"></script> -->
 <script src="./JavaScript/main.js"></script>
 
 </html>
