@@ -44,7 +44,6 @@ function debounce(fn, delay) {
 
 function SwitchFullScreen() {
     if (isFullScreen) {
-        console.log("close")
         isFullScreen = false
         if (document.exitFullscreen) {
             document.exitFullscreen()
@@ -74,9 +73,14 @@ function SwitchFullScreen() {
         window.onmousemove = null
         ScreenLamp.onclick = null
     } else {
-        console.log("open")
         isFullScreen = true
-        Notification(1, 5000)
+        // console.log(localStorage.getItem(fullScreenReminder))
+        if (!localStorage.getItem("fullScreenReminder")) {
+            console.log("a")
+            Notification(1, 10000)
+            localStorage.setItem("fullScreenReminder", "true")
+        }
+        Notification("Tap blank to hide the button.", 5000)
         if (objFullScreen.requestFullscreen) {
             objFullScreen.requestFullscreen()
         } else if (objFullScreen.webkitRequestFullScreen) {
@@ -165,11 +169,9 @@ function SwitchSettingUI() {
     // console.log("Setting: " + isSettingUI)
 }
 
-function Notification(contextID, duration, context) {
-    let ID = [document.createTextNode(context), "Tap blank to hide the button."]
+function Notification(context, duration) {
     let NotificationDiv = document.createElement("div")
-    NotificationDiv.innerHTML = ID[contextID]
-    // console.log(typeof ID[1])
+    NotificationDiv.innerHTML = context
     ScreenNotify.append(NotificationDiv)
     NotificationDiv.style.animationDuration = duration + "ms"
     //remove
