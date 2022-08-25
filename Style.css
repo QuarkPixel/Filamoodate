@@ -1,6 +1,7 @@
 :root {
     --textColor: #000;
-    --pixelScale: 5;
+    --pixelScale: 3;
+    --curve: cubic-bezier(0.08, 0.82, 0.2, 1);
 }
 ::-webkit-scrollbar {
     height: 0;
@@ -20,7 +21,7 @@ body {
     background-color: #ccc;
     overflow: hidden;
     font-family: Chill;
-    font-size: calc(13.82px * var(--pixelScale));
+    font-size: calc(11px * var(--pixelScale));
 }
 
 * {
@@ -48,13 +49,6 @@ button {
     background-color: unset;
     color: var(--textColor);
     cursor: pointer;
-
-    /* For JS */
-
-    /* background-position: calc(0px * var(--pixelScale))
-        calc(-16px * var(--pixelScale)); */
-    /* height: calc(16px * var(--pixelScale));
-    width: calc(16px * var(--pixelScale)); */
 }
 
 body > div {
@@ -66,7 +60,7 @@ body > div {
 #ScreenLamp {
     top: 0;
     left: 0;
-    background-image: url("data:image/webp;base64,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");
+    background-image: url("res/mesh-527.png");
     background-size: cover;
     cursor: auto;
     /* cursor: pointer; */
@@ -78,7 +72,7 @@ body > div {
     width: calc(35px * var(--pixelScale));
     height: calc(19px * var(--pixelScale));
     transition: right 0.2s;
-    image-rendering: pixelated; /* Adapt to bugs in chrome */
+    image-rendering: pixelated;
     image-rendering: crisp-edges;
     cursor: none;
 }
@@ -95,7 +89,6 @@ body > div {
     opacity: 0.2;
     transition: opacity 0.2s;
     cursor: auto;
-    /* pointer-events: none; */
 }
 
 #ScreenUI > .btn {
@@ -104,6 +97,84 @@ body > div {
     right: calc(1px * var(--pixelScale));
     width: calc(32px * var(--pixelScale));
     height: calc(16px * var(--pixelScale));
+}
+
+#ScreenNotify {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(80vw, calc(256px * var(--pixelScale)));
+    height: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#ScreenNotify > div {
+    background-color: rgba(255, 255, 255, 0.7);
+    width: auto;
+    padding: calc(2px * var(--pixelScale)) calc(2px * var(--pixelScale))
+        calc(1px * var(--pixelScale));
+    margin: calc(2px * var(--pixelScale)) 0;
+    text-align: center;
+    display: inline-block;
+    line-height: 1em;
+    vertical-align: bottom;
+    animation: notify-show var(--curve) both;
+}
+
+#ScreenNotify > div :hover {
+    color: rgba(255, 255, 255, 0);
+}
+
+@keyframes notify-show {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+        height: 0;
+    }
+
+    4% {
+        opacity: 1;
+        transform: scale(1.05);
+        height: auto;
+    }
+
+    6% {
+        /* opacity: 1; */
+        transform: scale(0.96);
+        /* height: 2rem; */
+    }
+
+    7% {
+        /* opacity: 1; */
+        transform: scale(1.02);
+        /* height: 2rem; */
+    }
+
+    8% {
+        /* opacity: 1; */
+        transform: none;
+        /* height: 2rem; */
+    }
+
+    88% {
+        opacity: 1;
+        transform: none;
+        height: auto;
+        filter: none;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.1);
+        height: 0;
+        filter: blur(21px);
+    }
 }
 
 .btnAnimation {
