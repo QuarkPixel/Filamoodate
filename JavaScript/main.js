@@ -4,8 +4,11 @@ var noSleep = new NoSleep(),
     ScreenLamp = document.getElementById("ScreenLamp"),
     ScreenUI = document.getElementById("ScreenUI"),
     ScreenNotify = document.getElementById("ScreenNotify"),
-    NotificationElementID = 0,
-    isUiHidden = false
+    isUiHidden = false,
+    isFullScreen = false,
+    isSettingUI = false,
+    objFullScreen = document.body
+
 for (let i = 0; i < btnAnimation.length; i++) {
     let btnAnimationAttr = btnAnimation[i].getAttribute("name").split(",")
     if (btnAnimationAttr.length <= 2) {
@@ -29,14 +32,19 @@ for (let i = 0; i < btnAnimation.length; i++) {
     })
 }
 
-let isFullScreen,
-    isSettingUI,
-    objFullScreen = document.body
+function debounce(fn, delay) {
+    let timer = null
+    return function () {
+        if (timer) {
+            clearTimeout(timer)
+        }
+        timer = setTimeout(fn, delay)
+    }
+}
 
 function SwitchFullScreen() {
-    if (this.time && Date.now() - this.time < 2048) return
-    this.time = Date.now()
     if (isFullScreen) {
+        console.log("close")
         isFullScreen = false
         if (document.exitFullscreen) {
             document.exitFullscreen()
@@ -66,7 +74,9 @@ function SwitchFullScreen() {
         window.onmousemove = null
         ScreenLamp.onclick = null
     } else {
+        console.log("open")
         isFullScreen = true
+        Notification(1, 5000)
         if (objFullScreen.requestFullscreen) {
             objFullScreen.requestFullscreen()
         } else if (objFullScreen.webkitRequestFullScreen) {
@@ -120,8 +130,8 @@ function SwitchUiVisibility(inputCase) {
 }
 
 function SwitchSettingUI() {
-    if (this.time && Date.now() - this.time < 2048) return
-    this.time = Date.now()
+    // if (this.time && Date.now() - this.time < 2048) return
+    // this.time = Date.now()
     if (isSettingUI) {
         isSettingUI = false
         let i = 3
@@ -151,15 +161,15 @@ function SwitchSettingUI() {
             i++
         }, 50)
     }
-    console.log("Setting: " + isSettingUI)
+    console.time("Setting: " + isSettingUI)
+    // console.log("Setting: " + isSettingUI)
 }
 
 function Notification(contextID, duration, context) {
     let ID = [document.createTextNode(context), "Tap blank to hide the button."]
     let NotificationDiv = document.createElement("div")
-    let NotificationNode = ID[contextID]
-    NotificationDiv.appendChild(NotificationNode)
-    NotificationElementID++
+    NotificationDiv.innerHTML = ID[contextID]
+    // console.log(typeof ID[1])
     ScreenNotify.append(NotificationDiv)
     NotificationDiv.style.animationDuration = duration + "ms"
     //remove
@@ -167,8 +177,3 @@ function Notification(contextID, duration, context) {
         NotificationDiv.remove()
     }, duration + 100)
 }
-
-Notification(
-    '<div style="width: 100px; height: 100px; background:red"></div>',
-    10000
-)

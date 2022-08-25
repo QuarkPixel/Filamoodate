@@ -28,8 +28,8 @@
         <div class="background"></div>
         <div class="btn">
             <button name="0,0" class="btnAnimation"
-                onclick="SwitchFullScreen()"></button>
-            <button name="16,0" class="btnAnimation" onclick="SwitchSettingUI()"></button>
+                onclick="debounce(SwitchFullScreen(), 256)"></button>
+            <button name="16,0" class="btnAnimation" onclick="debounce(SwitchSettingUI(), 256)"></button>
         </div>
 
     </div>
