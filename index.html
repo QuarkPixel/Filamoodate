@@ -14,7 +14,7 @@
     <!-- Apple Safari -->
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-title" content="ScreenAmbient">
-    <meta name="viewport" content="minimal-ui">
+    <!-- <meta name="viewport" content="minimal-ui"> -->
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link
@@ -25,13 +25,21 @@
 <body>
     <div id="ScreenLamp"></div>
     <div id="ScreenUI">
-        <div class="background"></div>
         <div class="btn">
-            <button name="0,0" class="btnAnimation"
-                onclick="debounce(SwitchFullScreen(), 256)"></button>
-            <button name="16,0" class="btnAnimation" onclick="debounce(SwitchSettingUI(), 256)"></button>
+            <div class="background"></div>
+            <div class="item">
+                <button name="0,0" class="btnAnimation"
+                    onclick="debounce(SwitchFullScreen(), 256)"></button>
+                <button name="16,0" class="btnAnimation" onclick="debounce(SwitchSettingUI(), 256)"></button>
+            </div>
         </div>
-
+        <div id="settingUI">
+            <div class="background">
+                <div class="I"></div>
+                <div class="II"></div>
+            </div>
+            <div class="context"></div>
+        </div>
     </div>
     <div id="ScreenNotify">
     </div>

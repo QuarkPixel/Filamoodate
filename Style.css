@@ -57,6 +57,8 @@ body > div {
     height: 100%;
 }
 
+/* Lamp */
+
 #ScreenLamp {
     top: 0;
     left: 0;
@@ -64,20 +66,57 @@ body > div {
     background-size: cover;
     cursor: auto;
     /* cursor: pointer; */
+    z-index: 0;
 }
 
+/* UI */
+
 #ScreenUI {
+    /* bottom: 0;
+    right: 0;
+    width: calc(35px * var(--pixelScale));
+    height: calc(19px * var(--pixelScale)); */
+    transition: right 0.2s;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    /* cursor: none; */
+    z-index: 1;
+}
+
+#ScreenUI > .btn {
+    position: absolute;
     bottom: 0;
     right: 0;
     width: calc(35px * var(--pixelScale));
     height: calc(19px * var(--pixelScale));
-    transition: right 0.2s;
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
-    cursor: none;
+    /* bottom: calc(1px * var(--pixelScale));
+    right: calc(1px * var(--pixelScale));
+    width: calc(32px * var(--pixelScale));
+    height: calc(16px * var(--pixelScale)); */
 }
 
-#ScreenUI > .background {
+#ScreenUI > .btn > .item {
+    position: absolute;
+    right: calc(1px * var(--pixelScale));
+    bottom: calc(1px * var(--pixelScale));
+}
+
+#ScreenUI > .btn > .item > button {
+    float: left;
+    font-size: 0;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    background: no-repeat url("res/UserInterface.png");
+    background-size: auto calc(96px * var(--pixelScale));
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+#ScreenUI > .btn > .item > button:hover {
+    opacity: 1;
+}
+
+#ScreenUI > .btn > .background {
     position: absolute;
     width: 0;
     width: 100%;
@@ -89,15 +128,22 @@ body > div {
     opacity: 0.2;
     transition: opacity 0.2s;
     cursor: auto;
+    pointer-events: none;
+    /* z-index: 1; */
 }
 
-#ScreenUI > .btn {
-    position: absolute;
-    bottom: calc(1px * var(--pixelScale));
-    right: calc(1px * var(--pixelScale));
-    width: calc(32px * var(--pixelScale));
-    height: calc(16px * var(--pixelScale));
+/* Setting */
+#SettingUI {
+    width: calc(80px * var(--pixelScale));
+    height: calc(96px * var(--pixelScale));
 }
+#SettingUI > .background > .I {
+    background: no-repeat url("res/UserInterface.png");
+    background-size: auto calc(96px * var(--pixelScale));
+    background-position: calc(-128px * var(--pixelScale)) 0;
+}
+
+/* Notify */
 
 #ScreenNotify {
     position: absolute;
@@ -127,10 +173,6 @@ body > div {
     animation: notify-show var(--curve) both;
 }
 
-#ScreenNotify > div :hover {
-    color: rgba(255, 255, 255, 0);
-}
-
 @keyframes notify-show {
     0% {
         opacity: 0;
@@ -145,21 +187,15 @@ body > div {
     }
 
     6% {
-        /* opacity: 1; */
         transform: scale(0.96);
-        /* height: 2rem; */
     }
 
     7% {
-        /* opacity: 1; */
         transform: scale(1.02);
-        /* height: 2rem; */
     }
 
     8% {
-        /* opacity: 1; */
         transform: none;
-        /* height: 2rem; */
     }
 
     88% {
@@ -178,12 +214,12 @@ body > div {
 }
 
 .btnAnimation {
-    float: left;
+    /* float: left;
     font-size: 0;
-    image-rendering: pixelated; /* Adapt to bugs in chrome */
+    image-rendering: pixelated;
     image-rendering: crisp-edges;
     background: no-repeat url("res/UserInterface.png");
     background-size: auto calc(96px * var(--pixelScale));
     opacity: 0.5;
-    transition: opacity 0.2s;
+    transition: opacity 0.2s; */
 }

@@ -24,12 +24,12 @@ for (let i = 0; i < btnAnimation.length; i++) {
         "calc(" + btnAnimationAttr[2] + "px * var(--pixelScale))"
     btnAnimation[i].style.height =
         "calc(" + btnAnimationAttr[3] + "px * var(--pixelScale))"
-    btnAnimation[i].addEventListener("mouseenter", function () {
-        this.style.opacity = "1"
-    })
-    btnAnimation[i].addEventListener("mouseleave", function () {
-        this.style.opacity = "0.5"
-    })
+    // btnAnimation[i].addEventListener("mouseenter", function () {
+    //     this.style.opacity = "1"
+    // })
+    // btnAnimation[i].addEventListener("mouseleave", function () {
+    //     this.style.opacity = "0.5"
+    // })
 }
 
 function debounce(fn, delay) {
@@ -74,7 +74,7 @@ function SwitchFullScreen() {
         ScreenLamp.onclick = null
     } else {
         isFullScreen = true
-        // console.log(localStorage.getItem(fullScreenReminder))
+        // console.log(localStorage.getItem(fullScreenReminder))><
         if (!localStorage.getItem("fullScreenReminder")) {
             console.log("a")
             Notification(1, 10000)
