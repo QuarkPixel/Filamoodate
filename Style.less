@@ -1,0 +1,205 @@
+:root {
+    --textColor: #1d1d1f;
+    --pixelScale: 3;
+    --curve: cubic-bezier(0.06, 0.6, 0.46, 1);
+    --backgroundUI: no-repeat url("res/UserInterface.png");
+    --backgroundUIsize: auto calc(96px * var(--pixelScale));
+}
+
+::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+}
+
+@font-face {
+    font-family: Chill;
+    src: url("res/Fonts/Chill.woff2") format("woff2"),
+        url("res/Fonts/Chill.woff2") format("woff"),
+        url("res/Fonts/Chill.ttf") format("opentype");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    display: inline;
+}
+
+a {
+    text-decoration: none;
+    display: block;
+    color: var(--black8);
+}
+
+i {
+    font-style: normal;
+}
+
+button {
+    outline: none;
+    border: none;
+    background-color: unset;
+    color: var(--textColor);
+    cursor: pointer;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    color: var(--textColor);
+    background-color: #ccc;
+    overflow: hidden;
+    font-family: Chill;
+    font-size: calc(11px * var(--pixelScale));
+
+    >div {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+#ScreenLamp {
+    top: 0;
+    left: 0;
+    background-image: url("res/mesh-527.png");
+    background-size: cover;
+    cursor: auto;
+    /* cursor: pointer; */
+    z-index: 0;
+}
+
+#ScreenUI {
+    /* bottom: 0;
+        right: 0;
+        width: calc(35px * var(--pixelScale));
+        height: calc(19px * var(--pixelScale)); */
+    transition: right 0.2s;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    /* cursor: none; */
+    z-index: 1;
+
+    >.btn {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: calc(35px * var(--pixelScale));
+        height: calc(19px * var(--pixelScale));
+
+        >.item {
+            position: absolute;
+            right: calc(1px * var(--pixelScale));
+            bottom: calc(1px * var(--pixelScale));
+
+            >button {
+                float: left;
+                font-size: 0;
+                image-rendering: pixelated;
+                image-rendering: crisp-edges;
+                background: var(--backgroundUI);
+                background-size: var(--backgroundUIsize);
+                opacity: 0.5;
+                transition: opacity 0.2s var(--curve);
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+
+        >.background {
+            position: absolute;
+            width: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--backgroundUI);
+            background-size: var(--backgroundUIsize);
+            background-position: calc(-194px * var(--pixelScale)) calc(-77px * var(--pixelScale));
+            opacity: 0.2;
+            transition: opacity 0.2s;
+            cursor: auto;
+            pointer-events: none;
+        }
+    }
+
+    #SettingUI {
+        width: calc(80px * var(--pixelScale));
+        height: calc(96px * var(--pixelScale));
+
+        >.background>.I {
+            background: var(--backgroundUI);
+            background-size: var(--backgroundUIsize);
+            background-position: calc(-128px * var(--pixelScale)) 0;
+        }
+    }
+}
+
+#ScreenNotify {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(80vw, calc(256px * var(--pixelScale)));
+    height: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+
+    >div {
+        background-color: rgba(255, 255, 255, 0.7);
+        width: auto;
+        padding: calc(2px * var(--pixelScale)) calc(2px * var(--pixelScale)) calc(1px * var(--pixelScale));
+        margin: calc(2px * var(--pixelScale)) 0;
+        text-align: center;
+        display: inline-block;
+        line-height: 1em;
+        vertical-align: bottom;
+        animation: notify-show var(--curve) both;
+
+        @keyframes notify-show {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+                height: 0;
+            }
+
+            4% {
+                opacity: 1;
+                transform: scale(1.05);
+                height: auto;
+            }
+
+            6% {
+                transform: scale(0.96);
+            }
+
+            7% {
+                transform: scale(1.02);
+            }
+
+            8% {
+                transform: none;
+            }
+
+            88% {
+                opacity: 1;
+                transform: none;
+                height: auto;
+                filter: none;
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0.1);
+                height: 0;
+                filter: blur(21px);
+            }
+        }
+    }
+}
