@@ -67,20 +67,18 @@ body {
     background-image: url("res/mesh-527.png");
     background-size: cover;
     cursor: auto;
-    /* cursor: pointer; */
     z-index: 0;
 }
 
 #ScreenUI {
-    /* bottom: 0;
-        right: 0;
-        width: calc(35px * var(--pixelScale));
-        height: calc(19px * var(--pixelScale)); */
-    transition: right 0.2s;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
-    /* cursor: none; */
     z-index: 1;
+    pointer-events: none;
+
+    >div {
+        pointer-events: all;
+    }
 
     >.btn {
         position: absolute;
@@ -88,6 +86,8 @@ body {
         right: 0;
         width: calc(35px * var(--pixelScale));
         height: calc(19px * var(--pixelScale));
+        transition: right 0.2s var(--curve);
+        pointer-events: none;
 
         >.item {
             position: absolute;
@@ -103,6 +103,7 @@ body {
                 background-size: var(--backgroundUIsize);
                 opacity: 0.5;
                 transition: opacity 0.2s var(--curve);
+                pointer-events: all;
 
                 &:hover {
                     opacity: 1;
