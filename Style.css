@@ -179,7 +179,7 @@ body > div {
   margin: 0 5pt;
   padding: 1pt 0;
 }
-#settingUI > .content .tab > div button {
+#settingUI > .content .tab > #settingUI_ChangeMode button {
   position: relative;
   display: block;
   margin: 2pt 0;
@@ -191,14 +191,14 @@ body > div {
   color: var(--textColorWhite);
   transition: all 0.2s var(--curve);
 }
-#settingUI > .content .tab > div button:hover {
+#settingUI > .content .tab > #settingUI_ChangeMode button:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
-#settingUI > .content .tab > div > .selected {
+#settingUI > .content .tab > #settingUI_ChangeMode > .selected {
   background-color: var(--textColorWhite) !important;
   color: var(--textColor);
 }
-#settingUI > .content .tab > div > .Stat::after {
+#settingUI > .content .tab > #settingUI_ChangeMode > .Stat::after {
   content: "S";
   display: block;
   position: absolute;
@@ -208,10 +208,10 @@ body > div {
   opacity: 0;
   transition: opacity 0.2s var(--curve);
 }
-#settingUI > .content .tab > div > .Stat:hover::after {
+#settingUI > .content .tab > #settingUI_ChangeMode > .Stat:hover::after {
   opacity: 1;
 }
-#settingUI > .content .tab > div > .Dyn::after {
+#settingUI > .content .tab > #settingUI_ChangeMode > .Dyn::after {
   content: "D";
   display: block;
   position: absolute;
@@ -221,8 +221,33 @@ body > div {
   opacity: 0;
   transition: opacity 0.2s var(--curve);
 }
-#settingUI > .content .tab > div > .Dyn:hover::after {
+#settingUI > .content .tab > #settingUI_ChangeMode > .Dyn:hover::after {
   opacity: 1;
+}
+#settingUI > .content #settingUI_Display label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  padding-right: 1em;
+}
+#settingUI > .content #settingUI_Display label::after {
+  content: "";
+  position: absolute;
+  display: block;
+  top: calc(50% - 2px * var(--pixelScale));
+  right: calc(0.5em - 2px * var(--pixelScale));
+  width: calc(4px * var(--pixelScale));
+  height: calc(4px * var(--pixelScale));
+  background: var(--backgroundUI);
+  background-size: auto calc(48px * var(--pixelScale));
+  background-position: calc(-18px * var(--pixelScale)) calc(-2px * var(--pixelScale));
+  transition: background-position 0.15s steps(3);
+}
+#settingUI > .content input {
+  display: none;
+}
+#settingUI > .content input:checked + label::after {
+  background-position: calc(-18px * var(--pixelScale)) calc(-26px * var(--pixelScale)) !important;
 }
 #settingUI > .content .option {
   background-color: rgba(255, 255, 255, 0.1);

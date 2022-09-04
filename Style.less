@@ -221,6 +221,9 @@ body {
             background-color: rgba(255, 255, 255, 0.1);
             margin: 0 5pt;
             padding: 1pt 0;
+        }
+
+        >#settingUI_ChangeMode {
 
             button {
                 position: relative;
@@ -283,6 +286,49 @@ body {
             }
         }
     }
+
+    #settingUI_Display {
+        // background-color: red;
+
+        label {
+            display: block;
+            position: relative;
+            cursor: pointer;
+
+            padding-right: 1em;
+
+            &::after {
+                content: "";
+                position: absolute;
+                display: block;
+                top: calc(50% - 2px * var(--pixelScale));
+                right: calc(.5em - 2px * var(--pixelScale));
+                // width: 10px;
+                // height: 10px;
+                width: calc(4px * var(--pixelScale));
+                height: calc(4px * var(--pixelScale));
+                background: var(--backgroundUI);
+                background-size: auto calc(48px * var(--pixelScale));
+                background-position: calc(-18px * var(--pixelScale)) calc(-2px * var(--pixelScale));
+                transition: background-position .15s steps(3);
+            }
+        }
+    }
+
+    input {
+
+        display: none;
+
+        &:checked+label::after {
+            // background: #2eb5f0;
+
+            // background-color: #fff;
+            background-position: calc(-18px * var(--pixelScale)) calc(-26px * var(--pixelScale)) !important;
+        }
+
+    }
+
+
 
     .option {
         background-color: rgba(255, 255, 255, 0.1);
