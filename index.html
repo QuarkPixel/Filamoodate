@@ -34,11 +34,39 @@
             </div>
         </div>
         <div id="settingUI">
-            <div class="background">
-                <div class="I"></div>
-                <div class="II"></div>
+            <div class="title">Setting</div>
+            <button class="closeButton"></button>
+            <div class="content">
+                <div class="tab">
+                    <p>Mode</p>
+                    <div id="settingUI_ChangeMode">
+                        <button onclick="changeMode(0)" class="Dyn">BigSurStyle</button>
+                        <button onclick="changeMode(1)" class="Dyn selected">BlurStyle</button>
+                        <button class="Stat" onclick="changeMode(2)">SolidColor</button>
+                        <button class="Dyn" onclick="changeMode(3)">GradientColor</button>
+                        <button class="Stat" onclick="changeMode(4)">Image</button>
+                    </div>
+                    <p>Display</p>
+                    <div>
+                        <label>
+                            非浏览器全屏<input type="checkbox"></label>
+                        <label>
+                            全屏时常亮<input type="checkbox"></label>
+
+                    </div>
+                    <!-- <u
+
+                        <li><a href="#ID=1">BigSurStyle</a></li>
+                        <li><a href=""></a></li>
+                        <li><a href=""></a></li>
+                        <li><a href=""></a></li>
+                        <li><a href=""></a></li>
+                        <li><a href=""></a></li>
+                    </ul> -->
+                </div>
+                <div class="option"></div>
             </div>
-            <div class="context"></div>
+            <!-- <div class="context"></div> -->
         </div>
     </div>
     <div id="ScreenNotify">

@@ -7,9 +7,12 @@ var noSleep = new NoSleep(),
     isUiHidden = false,
     isFullScreen = false,
     isSettingUI = false,
-    objFullScreen = document.body
-
-console.log(document.getElementsByClassName("btn"))
+    objFullScreen = document.body,
+    settingUI_ChangeModeButton = Object.values(
+        document
+            .getElementById("settingUI_ChangeMode")
+            .getElementsByTagName("button")
+    )
 
 for (let i = 0; i < btnUI.length; i++) {
     let btnUIAttr = btnUI[i].getAttribute("name").split(",")
@@ -159,7 +162,15 @@ function SwitchSettingUI() {
             i++
         }, 50)
     }
-    console.time("Setting: " + isSettingUI)
+    // console.time("Setting: " + isSettingUI)
+}
+
+//[TODO)
+function changeMode(serialNumber) {
+    settingUI_ChangeModeButton.forEach((e) => e.classList.remove("selected"))
+    settingUI_ChangeModeButton[serialNumber].classList.add("selected")
+    localStorage.setItem("displayMode", serialNumber)
+    console.log(localStorage.getItem("displayMode"))
 }
 
 function Notification(context, duration) {
