@@ -3,6 +3,7 @@ var noSleep = new NoSleep(),
     isControlledByEventListener,
     ScreenLamp = document.getElementById("ScreenLamp"),
     ScreenUI = document.getElementById("ScreenUI"),
+    SettingUI = document.getElementById("settingUI"),
     ScreenNotify = document.getElementById("ScreenNotify"),
     isUiHidden = false,
     isFullScreen = false,
@@ -132,9 +133,19 @@ function SwitchFullScreen() {
     }
 }
 
+SwitchSettingUI()
+
 function SwitchSettingUI() {
     if (isSettingUI) {
+        //Close
         isSettingUI = false
+        console.log("close")
+        // setTimeout(() => (SettingUI.style.display = "none"), 400)
+        SettingUI.style.opacity = "0"
+        SettingUI.style.transform = "scale(.1)"
+        SettingUI.style.bottom = "calc(1px* var(--pixelScale))"
+        SettingUI.style.right = "calc(1px* var(--pixelScale))"
+        SettingUI.style.pointerEvents = "none"
         let i = 3
         timer = setInterval(function () {
             if (i == -1) {
@@ -146,9 +157,18 @@ function SwitchSettingUI() {
                     "px * var(--pixelScale))"
             }
             i--
-        }, 50)
+        }, 90)
     } else {
+        //Open
         isSettingUI = true
+        console.log("open")
+        // SettingUI.style.display = "block"
+        SettingUI.style.opacity = "1"
+        // SettingUI.style.filter = "blur(0)"
+        SettingUI.style.transform = "scale(1)"
+        SettingUI.style.bottom = "5%"
+        SettingUI.style.right = "3%"
+        SettingUI.style.pointerEvents = "all"
         let i = 0
         timer = setInterval(function () {
             if (i == 4) {
@@ -162,10 +182,19 @@ function SwitchSettingUI() {
             i++
         }, 50)
     }
+    // DisplaySettingUI(isSettingUI)
     // console.time("Setting: " + isSettingUI)
 }
 
 //[TODO)
+if (!localStorage.getItem("displayMode")) {
+    localStorage.setItem("displayMode", 0)
+}
+console.log(localStorage.getItem("displayMode"))
+settingUI_ChangeModeButton[localStorage.getItem("displayMode")].classList.add(
+    "selected"
+)
+
 function changeMode(serialNumber) {
     settingUI_ChangeModeButton.forEach((e) => e.classList.remove("selected"))
     settingUI_ChangeModeButton[serialNumber].classList.add("selected")

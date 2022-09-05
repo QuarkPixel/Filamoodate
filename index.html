@@ -23,7 +23,13 @@
 </head>
 
 <body>
-    <div id="ScreenLamp"></div>
+    <div id="ScreenLamp">
+        <div class="BigSurStyle"></div>
+        <div class="BlurStyle"></div>
+        <div class="SolidColor"></div>
+        <div class="GradientColor"></div>
+        <div class="Image"></div>
+    </div>
     <div id="ScreenUI">
         <div class="btn">
             <div class="background"></div>
@@ -35,13 +41,13 @@
         </div>
         <div id="settingUI">
             <div class="title">Setting</div>
-            <button class="closeButton"></button>
+            <button class="closeButton" onclick="SwitchSettingUI()"></button>
             <div class="content">
                 <div class="tab">
                     <p>Mode</p>
                     <div id="settingUI_ChangeMode">
                         <button onclick="changeMode(0)" class="Dyn">BigSurStyle</button>
-                        <button onclick="changeMode(1)" class="Dyn selected">BlurStyle</button>
+                        <button onclick="changeMode(1)" class="Dyn">BlurStyle</button>
                         <button class="Stat" onclick="changeMode(2)">SolidColor</button>
                         <button class="Dyn" onclick="changeMode(3)">GradientColor</button>
                         <button class="Stat" onclick="changeMode(4)">Image</button>
