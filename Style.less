@@ -73,7 +73,7 @@ body {
     left: 0;
     cursor: auto;
     z-index: 0;
-    background-color: #ccc;
+    background-color: var(--textColor);
 
     >div {
         display: none;
@@ -90,16 +90,7 @@ body {
         background-color: aqua;
     }
 
-    background-color: var(--test);
-
     .BlurStyle {
-        // background-color: ;
-        background-image:
-            radial-gradient(closest-side, #6c928cff, #6c928c00),
-            radial-gradient(closest-side, #f30ba4ff, #f30ba400),
-            radial-gradient(closest-side, #feea83ff, #feea8300),
-            radial-gradient(closest-side, #aa8ef5ff, #aa8ef500),
-            radial-gradient(closest-side, #f8c093ff, #f8c09300);
         background-size: 130vmax 130vmax,
             80vmax 80vmax,
             90vmax 90vmax,
@@ -112,7 +103,7 @@ body {
             50vmax 50vmax;
         background-repeat: no-repeat;
         animation: 10s BlurStyle_movement linear infinite;
-
+        transition: opacity .5s;
 
         &::after {
             content: '';
@@ -122,7 +113,7 @@ body {
             height: 100%;
             top: 0;
             left: 0;
-            // backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
             // -webkit-backdrop-filter: blur(10px);
         }
 
@@ -203,7 +194,12 @@ body {
         top: 50%;
         left: 50%;
         transform: translate(-50%; -50%);
+        color: #eee;
     }
+
+    // >aside {
+
+    // }
 }
 
 #ScreenUI {
@@ -533,8 +529,6 @@ body {
             bottom: calc(1px * var(--pixelScale));
             right: calc(1px * var(--pixelScale));
             padding: calc(1px * var(--pixelScale)) calc(1px * var(--pixelScale)) 2px;
-            // color: var(--textColorWhite);
-            // border: calc(1px * var(--pixelScale)) #0cc234 solid;
             border: calc(1px * var(--pixelScale)) var(--textColorWhite) solid;
             transition: border-color .3s;
             pointer-events: all;
@@ -546,11 +540,10 @@ body {
             height: .6em;
             border: .1em var(--textColorWhite) solid;
             transition: background-color .3s ease-in-out;
-            // background-color: goldenrod;
             background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA2MCA2MCI+PHBhdGggZmlsbD0iI0I3MUUxRSIgZD0iTTggNjBIMHYtOEw1MiAwaDh2OEw4IDYweiIvPjwvc3ZnPg);
         }
 
-        .colorInput {
+        input {
             display: inline-block;
             outline: none;
             height: 1em;
@@ -560,7 +553,7 @@ body {
             text-transform: uppercase;
         }
 
-        .colorInput:focus {
+        input:focus {
             // outline: 1px solid;
             box-shadow: 0 1px #fff;
         }

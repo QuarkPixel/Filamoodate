@@ -56,8 +56,7 @@ body > div {
   left: 0;
   cursor: auto;
   z-index: 0;
-  background-color: #ccc;
-  background-color: var(--test);
+  background-color: var(--textColor);
 }
 #ScreenLamp > div {
   display: none;
@@ -72,7 +71,6 @@ body > div {
   background-color: aqua;
 }
 #ScreenLamp .BlurStyle {
-  background-image: radial-gradient(closest-side, #6c928cff, #6c928c00), radial-gradient(closest-side, #f30ba4ff, #f30ba400), radial-gradient(closest-side, #feea83ff, #feea8300), radial-gradient(closest-side, #aa8ef5ff, #aa8ef500), radial-gradient(closest-side, #f8c093ff, #f8c09300);
   background-size: 130vmax 130vmax,
             80vmax 80vmax,
             90vmax 90vmax,
@@ -81,6 +79,7 @@ body > div {
   background-position: -80vmax -80vmax, 60vmax -30vmax, 10vmax 10vmax, -30vmax -10vmax, 50vmax 50vmax;
   background-repeat: no-repeat;
   animation: 10s BlurStyle_movement linear infinite;
+  transition: opacity 0.5s;
 }
 #ScreenLamp .BlurStyle::after {
   content: '';
@@ -90,6 +89,7 @@ body > div {
   height: 100%;
   top: 0;
   left: 0;
+  backdrop-filter: blur(10px);
 }
 @keyframes BlurStyle_movement {
   0%,
@@ -139,6 +139,7 @@ body > div {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  color: #eee;
 }
 #ScreenUI {
   image-rendering: pixelated;
@@ -379,7 +380,7 @@ body > div {
   transition: background-color 0.3s ease-in-out;
   background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA2MCA2MCI+PHBhdGggZmlsbD0iI0I3MUUxRSIgZD0iTTggNjBIMHYtOEw1MiAwaDh2OEw4IDYweiIvPjwvc3ZnPg);
 }
-#settingUI > .content .option .colorInput {
+#settingUI > .content .option input {
   display: inline-block;
   outline: none;
   height: 1em;
@@ -388,7 +389,7 @@ body > div {
   padding: calc(1px*var(--pixelScale)) calc(1px*var(--pixelScale)) 0;
   text-transform: uppercase;
 }
-#settingUI > .content .option .colorInput:focus {
+#settingUI > .content .option input:focus {
   box-shadow: 0 1px #fff;
 }
 #settingUI > .content .display {

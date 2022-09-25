@@ -215,7 +215,6 @@ function changeMode(serialNumber) {
     settingUI_Lamp[serialNumber].classList.add("display")
 }
 
-// console.log("SolidColor_ColorInput")
 function settingApply() {
     // console.log(currentPattern == 2)
     coolDown(800)
@@ -223,7 +222,7 @@ function settingApply() {
         console.log(0)
     } else if (currentPattern == 1) {
         // console.log(1)
-        Set_BlurStyle()
+        Save_Blurstyle()
     } else if (currentPattern == 2) {
         // console.log(2)
         Save_SolidColor()
@@ -246,21 +245,26 @@ function successApply() {
 // console.log("SolidColor_ColorInput")
 // })
 
+function resetConfirm() {}
+
 function reset() {
     localStorage.setItem("isSetting", true)
     //ColorInput
     //BigSurStyle
     //BlurStyle
-    localStorage.setItem("BlurStyle_ColorBG", "#2D90DA")
-    localStorage.setItem("BlurStyle_ColorI", "#6c928c")
-    localStorage.setItem("BlurStyle_ColorII", "#2D90DA")
-    localStorage.setItem("BlurStyle_ColorIII", "#2D90DA")
-    localStorage.setItem("BlurStyle_ColorIV", "#2D90DA")
-    localStorage.setItem("BlurStyle_ColorV", "#2D90DA")
+    localStorage.setItem("BlurStyle_Color", [
+        "#2d90da",
+        "#6c928c",
+        "#f30ba4",
+        "#feea83",
+        "#aa8ef5",
+        "#f8c093",
+    ])
     //SolidColor
     localStorage.setItem("SolidColor_Color", "#2D90DA")
     //GradientColor
     //Image
+    location.reload()
 }
 
 if (!localStorage.getItem("isSetting")) {
@@ -299,33 +303,68 @@ var settingDOM = {
 //!>>>BigSurStyle<<<
 
 //!>>>BlurStyle<<<
+// BlurStyle_localColor=
 //*>>Preset
-settingDOM.BlurStyle.i[0].value = localStorage.getItem("BlurStyle_ColorBG")
-settingDOM.BlurStyle.i[1].value = localStorage.getItem("BlurStyle_ColorI")
-settingDOM.BlurStyle.i[2].value = localStorage.getItem("BlurStyle_ColorII")
-settingDOM.BlurStyle.i[3].value = localStorage.getItem("BlurStyle_ColorIII")
-settingDOM.BlurStyle.i[4].value = localStorage.getItem("BlurStyle_ColorIV")
-settingDOM.BlurStyle.i[5].value = localStorage.getItem("BlurStyle_ColorIV")
+for (let i = 0; i < 6; i++) {
+    settingDOM.BlurStyle.i[i].value = localStorage
+        .getItem("BlurStyle_Color")
+        .split(",")[i]
+}
 Set_BlurStyle()
 
 //*>>Set
 function Set_BlurStyle() {
-    let colorBG = localStorage.getItem("BlurStyle_ColorBG"),
-        colorI = localStorage.getItem("BlurStyle_ColorI")
-    settingDOM.BlurStyle.p[0].style.background = colorBG
-    settingUI_Lamp[1].style.backgroundColor = colorBG
-    settingDOM.BlurStyle.p[1].style.background = colorI
-    settingUI_Lamp[1].style.backgroundColor = colorI
+    let color = localStorage.getItem("BlurStyle_Color").split(",")
+    settingUI_Lamp[1].style.opacity = "0"
+    for (let i = 0; i < 6; i++) {
+        settingDOM.BlurStyle.p[i].style.background = color[i]
+    }
+    // let delay = [300,500]
+    // if (initialize) {
+    //     delay = [0,0]
+    // }
+    setTimeout(() => {
+        settingUI_Lamp[1].style.backgroundColor = color[0]
+        settingUI_Lamp[1].style.backgroundImage =
+            "radial-gradient(closest-side, " +
+            color[1] +
+            "ff, " +
+            color[1] +
+            "00),radial-gradient(closest-side, " +
+            color[2] +
+            "ff, " +
+            color[2] +
+            "00),radial-gradient(closest-side, " +
+            color[3] +
+            "ff, " +
+            color[3] +
+            "00),radial-gradient(closest-side, " +
+            color[4] +
+            "ff, " +
+            color[4] +
+            "00),radial-gradient(closest-side, " +
+            color[5] +
+            "ff, " +
+            color[5] +
+            "00)"
+        setTimeout(() => {
+            settingUI_Lamp[1].style.opacity = "1"
+        }, 100)
+    }, 580)
     //[TODO)document.documentElement.style.setProperty("--test", "blue")
 }
 
 //*>>Save
 function Save_Blurstyle() {
     if (CheckIsColor(settingDOM.BlurStyle.i[0].value)) {
-        localStorage.setItem(
-            "SolidColor_Color",
-            settingDOM.BlurStyle.i[0].value
-        )
+        localStorage.setItem("BlurStyle_Color", [
+            settingDOM.BlurStyle.i[0].value,
+            settingDOM.BlurStyle.i[1].value,
+            settingDOM.BlurStyle.i[2].value,
+            settingDOM.BlurStyle.i[3].value,
+            settingDOM.BlurStyle.i[4].value,
+            settingDOM.BlurStyle.i[5].value,
+        ])
         Set_BlurStyle()
         successApply()
     } else {
@@ -335,11 +374,6 @@ function Save_Blurstyle() {
 
 //!>>>SolidColor<<<
 //*>>Preset
-var SolidColor_ColorInput = document.getElementById("SolidColor_ColorInput"),
-    SolidColor_ColorPreview = document.getElementById("SolidColor_ColorPreview") //[TODO)
-// if (!localStorage.getItem("SolidColor_Color")) {
-//     localStorage.setItem("SolidColor_Color", "#2D90DA")
-// }
 settingDOM.SolidColor.i.value = localStorage.getItem("SolidColor_Color")
 Set_SolidColor()
 

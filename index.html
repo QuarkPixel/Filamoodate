@@ -29,6 +29,7 @@
         <div class="SolidColor"></div>
         <div class="GradientColor">GradientColor</div>
         <div class="Image">Image</div>
+        <aside id="transitionElement"></aside>
     </div>
     <div id="ScreenUI">
         <div class="btn">
@@ -63,18 +64,10 @@
                         <input type="checkbox" id="checkbox-DontEnterQuit">
                         <label for="checkbox-DontEnterQuit">
                             Don't quit when Enter</label>
-
-
                     </div>
-                    <!-- <u
-
-                        <li><a href="#ID=1">BigSurStyle</a></li>
-                        <li><a href=""></a></li>
-                        <li><a href=""></a></li>
-                        <li><a href=""></a></li>
-                        <li><a href=""></a></li>
-                        <li><a href=""></a></li>
-                    </ul> -->
+                    <p><button
+                            onclick="Notification('<button onclick=&quot;reset()&quot;>Click here to confirm reset setting parameters.</button>',5000)">Reset</button>
+                    </p>
                 </div>
                 <div class="option" id="settingUI_Option">
                     <article class="BigSurStyle">
@@ -121,6 +114,10 @@
                             <span class="colorPreview" id="BlurStyle_ColorPreviewV"></span>
                             <input type="text"
                                 placeholder="Common Formats" id="BlurStyle_ColorInputV" class="colorInput">
+                        </div>
+                        <div>
+                            Blur:
+                            <input type="number">PX
                         </div>
                     </article>
                     <article class="SolidColor">
