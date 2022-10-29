@@ -1,12 +1,16 @@
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
+  // font-size: 16px;
+  // line-height: 24px;
+  // font-weight: 400;
 
   color-scheme: light dark;
+  --curve: cubic-bezier(.08, .82, .2, 1);
+  --curve-out: cubic-bezier(.95, .05, .8, .04);
   --color: #f7f7fa;
+  --color-alpha: #f7f7fa25;
   --background-color: #242424;
+  --background-color-alpha: #2424249f;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,7 +22,9 @@
 @media (prefers-color-scheme: light) {
   :root {
     --color: #1d1d1f;
+    --color-alpha: #1d1d1f25;
     --background-color: #f5f5f7;
+    --background-color-alpha: #f5f5f79f;
   }
 
   a:hover {
@@ -46,6 +52,10 @@ body {
   height: 100%;
 
   position: relative;
+}
+
+p {
+  margin: 0;
 }
 
 a {

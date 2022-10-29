@@ -1,25 +1,28 @@
 <!-- @format -->
 
 <script setup>
-import { ref } from "vue"
-const operating_area = ref([false, false])
+import { ref, inject } from "vue"
+const operating_area = inject("operating_area")
+const abc = () => {
+	console.log("abc")
+}
 </script>
 
 <template>
-	<div>{{ operating_area }}</div>
+	<!-- <div>{{ operating_area }}</div> -->
 	<div class="operating">
+		<div
+			class="back"
+			@mouseover=";(operating_area[0] = false), (operating_area[1] = false)"
+		></div>
 		<div
 			class="left"
 			@mouseover="operating_area[0] = true"
-			@mouseleave="operating_area[0] = false">
-			<br />Left<br />
-		</div>
+		></div>
 		<div
 			class="right"
 			@mouseover="operating_area[1] = true"
-			@mouseleave="operating_area[1] = false">
-			>Right
-		</div>
+		></div>
 	</div>
 </template>
 
@@ -30,12 +33,18 @@ const operating_area = ref([false, false])
 
 	position: absolute;
 	top: 0;
-
-	background: #0006;
+	z-index: 1;
 
 	> * {
 		position: absolute;
-		outline: 1px solid #000;
+		outline: 1px solid #fff3;
+	}
+
+	.back {
+		width: 100%;
+		height: 100%;
+
+		// background-color: aqua;
 	}
 
 	.left {
