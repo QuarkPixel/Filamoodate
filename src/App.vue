@@ -1,31 +1,38 @@
+<!-- @format -->
+
 <script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
+// import Displayer from "./components/Displayer.vue"
+import Displayer from "./components/Displayer.vue"
+import UserInterface from "./components/UserInterface.vue"
+import Setting from "./components/Setting.vue"
+import { ref } from "vue"
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+	<Displayer id="displayer"></Displayer>
+	<UserInterface id="user-interface"></UserInterface>
+	<Setting id="setting"></Setting>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
+<style scoped lang="less">
+* {
+	// background-color: aqua;
+	// width: 100%;
+	// height: 100%;
+	position: absolute;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+#displayer {
+	background-color: #0f06;
+
+	width: 100%;
+	height: 100%;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+#user-interface {
+	background-color: #00f6;
+}
+#setting {
+	// background-color: #f006;
+	// bottom: 0;
+	top: 0;
 }
 </style>
